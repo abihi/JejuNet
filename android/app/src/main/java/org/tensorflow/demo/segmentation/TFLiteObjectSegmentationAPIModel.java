@@ -137,15 +137,6 @@ public class TFLiteObjectSegmentationAPIModel implements Segmentor {
         imgData.put((byte) (pixel & 0xFF));
       }
     }
-
-    /**long[][][] test = replacement[0];
-    long[][] test2 = test[0];
-    long[] test3 = test2[0];
-    int index = 0;
-    for (long[][] row : replacement[0]) {
-        for (long val[] : row)
-            pixelClasses[0][index++] = val[0];
-    }**/
     Trace.endSection(); // preprocessBitmap
 
     // Run the inference call.
@@ -158,7 +149,8 @@ public class TFLiteObjectSegmentationAPIModel implements Segmentor {
     Trace.endSection(); // segmentImage
 
     return new Segmentation(
-                pixelClasses[0],
+                //pixelClasses[0],
+                replacement,
                 numClass,
                 inputWidth, inputHeight, endTime - startTime,
             tfLite.getLastNativeInferenceDurationNanoseconds() / 1000 / 1000);

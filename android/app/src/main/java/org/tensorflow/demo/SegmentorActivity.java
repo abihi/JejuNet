@@ -54,7 +54,7 @@ public class SegmentorActivity extends CameraActivity implements OnImageAvailabl
   private static final int TF_OD_API_INPUT_HEIGHT = 257;
   private static final int TF_OD_API_NUM_CLASS = 3;
   private static final int TF_OD_API_NUM_OUTPUT = 1;
-  private static final String TF_OD_API_MODEL_FILE = "relabel_sunrgbd.tflite";
+  private static final String TF_OD_API_MODEL_FILE = "new_relabel_sunrgbd.tflite";
   private static final String TF_OD_API_LABELS_FILE = "file:///android_asset/relabel_labels_list.txt";
 
   private enum segmentorMode {

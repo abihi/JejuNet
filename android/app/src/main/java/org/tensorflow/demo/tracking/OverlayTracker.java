@@ -39,7 +39,7 @@ public class OverlayTracker {
   private Size previewSize;
 
   private int colors[];
-  private long[] resultPixels;
+  private long[][][][] resultPixels;
   private int[] pixels;
   private Vector<String> lastLabels;
   private Vector<String> labels;
@@ -112,7 +112,29 @@ public class OverlayTracker {
     }
     resultPixels = potential.getPixels();
 
+    /**long[][][] test = replacement[0];
+     long[][] test2 = test[0];
+     long[] test3 = test2[0];
+     int index = 0;
+     for (long[][] row : replacement[0]) {
+     for (long val[] : row)
+     pixelClasses[0][index++] = val[0];
+     }**/
+
     int numClass = potential.getNumClass();
+    int[] visitedLabels = new int[numClass];
+    long[][][] rowsResultPixels = resultPixels[0];
+    for(int i = 0; i < width; i++) {
+      int bmpWidth = bmp.getWidth();
+      for(int j = 0; j < height; j++) {
+        long[][] row = rowsResultPixels[i];
+        int classNo = (int) row[j][0];
+        pixels[j*bmpWidth+i] = colors[classNo];
+        visitedLabels[classNo] = 1;
+      }
+    }
+
+    /**int numClass = potential.getNumClass();
     int[] visitedLabels = new int[numClass];
     for(int i = 0; i < width; i++) {
       for(int j = 0; j < height; j++) {
@@ -120,7 +142,7 @@ public class OverlayTracker {
         pixels[j*bmp.getWidth()+i] = colors[classNo];
         visitedLabels[classNo] = 1;
       }
-    }
+    }**/
 
     lastLabels.clear();
     for(int i = 0; i < numClass; i++) {
